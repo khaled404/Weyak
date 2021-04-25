@@ -1,10 +1,12 @@
 import React, { FC } from 'react';
-import { Dimensions, Text, View, ImageBackground } from 'react-native';
+import { Dimensions, Text, View, ImageBackground,I18nManager } from 'react-native';
 import FastImage from 'react-native-fast-image';
-import { Colors, Fonts, Images } from '../constants/styleConstants';
+import { Colors, Pixel, Images } from '../constants/styleConstants';
 import { commonStyles } from '../styles/styles';
 const { width, height } = Dimensions.get('window');
 const Splash: FC = () => {
+  const {isRTL} = I18nManager;
+
   return (
     <ImageBackground
       source={Images.background}
@@ -24,12 +26,19 @@ const Splash: FC = () => {
         backgroundColor: Colors.white,
         opacity: .8
       }}>
-        <Text style={{
-          color: Colors.minColor,
-          fontSize: 60,
-          fontFamily: Fonts.light,
-          fontWeight: 'bold'
-        }} >Weyak</Text>
+        
+        {isRTL?
+                        <FastImage 
+                        source={Images.ArabicLogo} 
+                        style={{width:Pixel(350),height:Pixel(150)}} 
+                        resizeMode='contain'
+                        />
+                        :<FastImage 
+                        source={Images.logo} 
+                        style={{width:Pixel(350),height:Pixel(150)}} 
+                        resizeMode='contain'
+                        />
+                    }
       </View>
     </ImageBackground>
   );

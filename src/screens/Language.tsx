@@ -1,12 +1,12 @@
 import React, { FC } from 'react';
-import { Dimensions, StyleSheet, View, Text, ImageBackground } from 'react-native';
+import { Dimensions, StyleSheet, View, I18nManager, ImageBackground } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import { Colors, Images, Pixel, Fonts } from '../constants/styleConstants';
 import { commonStyles } from '../styles/styles';
 import Button from '../components/touchables/Button';
 import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-//import {LanguageHandler} from '../store/actions/settings';
+import {LanguageHandler} from '../store/actions/settings';
 import {useNavigation} from '@react-navigation/native';
 
 const { width, height } = Dimensions.get('window');
@@ -14,6 +14,7 @@ const Language: FC = () => {
     const { t } = useTranslation();
     const dispatch = useDispatch();
     const {navigate} = useNavigation();
+    const {isRTL} = I18nManager;
 
     return (
         <ImageBackground
@@ -31,19 +32,37 @@ const Language: FC = () => {
 
                 }} >
 
-                    <Text style={styles.logoText} >Weyak</Text>
+{
+                        isRTL?
+                        <FastImage 
+                        source={Images.ArabicLogo} 
+                        style={{width:Pixel(350),height:Pixel(200)}} 
+                        resizeMode='contain'
+                        />
+                        :<FastImage 
+                        source={Images.logo} 
+                        style={{width:Pixel(350),height:Pixel(200)}} 
+                        resizeMode='contain'
+                        />
+                    }       
                 </View>
             </View>
             <View style={styles.langBtnsContainer}>
                 <Button
-                    onPress={() =>navigate('Country') }
+                    onPress={() =>{
+                        dispatch(LanguageHandler('en')) 
+                        
+                    }}
                     style={styles.langBtn}
                     title={t('English')}
                     styleTitle={{ fontSize: Pixel(40), fontWeight: 'bold' }}
 
                 />
                 <Button
-                    onPress={() =>navigate('Country') }
+                    onPress={() =>{
+                        dispatch(LanguageHandler('ar')) 
+
+                    }}                    
                     style={styles.langBtn}
                     title={t('Arabic')}
                     styleTitle={{ fontSize: Pixel(40), fontWeight: 'bold' }}

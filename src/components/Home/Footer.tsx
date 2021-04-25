@@ -1,30 +1,67 @@
-import React, {FC} from 'react';
-import {StyleSheet, View,Text, ImageBackground,Image} from 'react-native';
+import React, {FC,useState} from 'react';
+import {StyleSheet, View,Text, TouchableOpacity,I18nManager} from 'react-native';
 import {Colors,Images,Pixel} from "../../constants/styleConstants";
 import {useTranslation} from "react-i18next";
 import {commonStyles} from "../../styles/styles";
-import {Mid, HomeIcon,Profile,Menu} from '../../../assets/Icons/Icons'
+import {ActiveHome, HomeIcon,Profile,Menu,ActiveMenu} from '../../../assets/Icons/Icons'
 import {useNavigation} from '@react-navigation/native';
 
+interface IFooter {
+    setActiveScreen?: any;
+}
 
-
-const Footer: FC = () => {
+const Footer: FC<IFooter> = ({setActiveScreen}) => {
     const {t} = useTranslation();
     const {navigate} = useNavigation();
+    const {isRTL} = I18nManager;
+    const [activeIcon, setActiveIcon] = useState('Home')
 
     return (
         
         <View style={styles.container} >
-            <HomeIcon/>
-            <View style={styles.mid} >
-
-            <Menu/>
-            <Text style={{
+            <TouchableOpacity 
+            onPress={() => {
+                setActiveScreen('Home')
+                setActiveIcon('Home')
+            }}
+            style={styles.icon} >
+            {
+                activeIcon=='Home'?
+                <ActiveHome/>
+                :
+                <HomeIcon />
+            }
+            <Text style={[styles.text,{
+                color:activeIcon=='Home'?Colors.minColor:Colors.dark
+            }]} >{t('Home')}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity 
+            onPress={() => {
+                setActiveScreen('RX')
+                setActiveIcon('RX')
+            }}
+            style={[styles.mid,{
+                backgroundColor:activeIcon=='RX'?Colors.minColor:Colors.white
+            }]} >
+            {
+                activeIcon=='RX'?
+                <ActiveMenu/>
+                :
+                <Menu/>
+            }
+            <Text style={[{
                 fontWeight:'bold',
-                fontSize:9
-            }} >RX</Text>
-            </View>
+                fontSize:9,
+                paddingTop:3
+            },{
+                color:activeIcon=='RX'?Colors.white:Colors.dark
+            }]} >RX</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.icon} >
+
             <Profile/>
+            <Text style={styles.text} >{t('Profile')}</Text>
+            </TouchableOpacity>
         </View>
     );
 
@@ -61,10 +98,19 @@ const styles = StyleSheet.create({
         height:75,
         borderRadius:37.5,
         //margin:5,
-        backgroundColor:Colors.white,               
+        //backgroundColor:Colors.white,               
         alignItems:'center',
         justifyContent:'center',
         borderWidth:7,
         borderColor:'#F9F9F9'
     },
+    icon:{
+        flexDirection:'column',
+        alignItems:'center',
+
+    },
+    text:{
+        fontSize:9,
+        paddingTop:5
+    }
 });

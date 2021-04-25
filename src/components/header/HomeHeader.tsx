@@ -8,12 +8,14 @@ import {
   TouchableOpacity,
   View,
   ViewStyle,
+  I18nManager
 } from 'react-native';
 import {
   Colors,
   Fonts,
   Pixel,
   ScreenOptions,
+  Images
 } from '../../constants/styleConstants';
 import {commonStyles} from '../../styles/styles';
 import {NavigationProps} from '../../constants/interfaces';
@@ -29,6 +31,7 @@ import {
 import IconTouchableContainer from '../touchables/IconTouchableContainer';
 import {useTranslation} from 'react-i18next';
 import Input from '../textInputs/Input';
+import FastImage from 'react-native-fast-image';
 
 interface IHeader {
   title: string;
@@ -55,13 +58,27 @@ const HomeHeader: FC<NavigationProps & IHeader> = ({
   titleStyle,
 }) => {
   const {t} = useTranslation();
+  const {isRTL} = I18nManager;
 
   return (
     <View style={[styles.mainContainer, containerStyle]}>
       <View style={[styles.rowConatiner]}>
         <View style={styles.right}>
           <View style={styles.titleConatiner}>
-            <Logo width={68} height={30} />
+          {
+                        isRTL?
+                        <FastImage 
+                        source={Images.ArabicLogo} 
+                        style={{width:Pixel(100),height:Pixel(30)}} 
+                        resizeMode='contain'
+                        />
+                        :
+                        <FastImage 
+                        source={Images.logo} 
+                        style={{width:Pixel(100),height:Pixel(40)}} 
+                        resizeMode='contain'
+                        />
+                    }
           </View>
         </View>
 

@@ -37,7 +37,7 @@ export enum Fonts {
 
 export enum Images {
     splash = require('../../assets/images/logo.png'),
-    logo = require('../../assets/images/Weyak.png'),
+    logo = require('../../assets/images/logoEn.png'),
     bg = require('../../assets/images/logo.png'),
     userImage = require('../../assets/images/profile-Circle.png'),
     homeBanner = require('../../assets/images/ttt.jpg'),
@@ -47,6 +47,11 @@ export enum Images {
     background = require('../../assets/images/background.png'),
     medicalImage = require('../../assets/images/gettyimages.png'),
     medicalOverlay = require('../../assets/images/Component.png'),
+    ArabicLogo = require('../../assets/images/Layer-2.png'),
+    ArabicOverlay = require('../../assets/images/arabicOverlay.png'),
+    ArabicMedical = require('../../assets/images/arabicGettyimage.png'),
+    ArabicOffer = require('../../assets/images/arabicOffer.png'),
+    ezaby = require('../../assets/images/ezaby.png'),
 
 }
 

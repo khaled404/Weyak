@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import {StyleSheet, View,Text, ImageBackground,Image} from 'react-native';
+import {StyleSheet, View,Text,I18nManager, ImageBackground,Image} from 'react-native';
 import {Colors,Images,Pixel} from "../../constants/styleConstants";
 import {useTranslation} from "react-i18next";
 import {commonStyles} from "../../styles/styles";
@@ -8,34 +8,38 @@ import Button from '../../components/touchables/Button'
 
 const PrescriptionUpload: FC = () => {
     const {t} = useTranslation();
+    const {isRTL} = I18nManager;
+
     return (
         
                 <View style={styles.container} >
                     <ImageBackground
-                     source={Images.medicalImage}
+                     source={isRTL?Images.ArabicMedical: Images.medicalImage}
                      style={ styles.imageBackground}
                      imageStyle={{width:'100%', height: '100%', borderRadius:15}}
                     >
                         <Image
-                         source={Images.medicalOverlay}
-                         style={styles.image}
+                         source={isRTL?Images.ArabicOverlay: Images.medicalOverlay}
+                         style={[styles.image, {
+                            right:isRTL? 10:0,
+                         }]}
                         />
                         <View style={styles.content} >
                             <View>
 
-                            <Text style={styles.text1} >Upload Prescription</Text>
-                            <Text style={styles.text2} >And We Will Respond As Sonn As Possible</Text>
+                            <Text style={styles.text1} >{t('Upload Prescription')}</Text>
+                            <Text style={styles.text2} >{t('And We Will Respond As Sonn As Possible')}</Text>
                             </View>
                             <View>
                                 <Button 
                                 style={styles.button}
                                 styleTitle={styles.textButton}
-                                title={'Upload Now'} />
+                                title={t('Upload Now')} />
                             </View>
                         </View>
                     </ImageBackground>
                     <View style={styles.footer} >
-                        <Text style={styles.textFooter} >This Service Allow You to Take Photo of your prescription or photo of the product and we will get back to you with the price and full details in seconds</Text>
+                        <Text style={styles.textFooter} >{t('This Service Allow You to Take Photo of your prescription or photo of the product and we will get back to you with the price and full details in seconds')}</Text>
                     </View>
                 </View>
             
@@ -63,7 +67,10 @@ const styles = StyleSheet.create({
     image:{ 
         borderRadius:15,
         width:'100%', 
-        height:'100%'
+        height:'100%',
+        position:'absolute',
+        top:0,
+        //left:0
     },
     content:{
         zIndex:100,
