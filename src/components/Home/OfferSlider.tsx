@@ -5,7 +5,7 @@ import Carousel, {Pagination} from 'react-native-snap-carousel';
 import {Colors, Pixel} from "../../constants/styleConstants";
 import OfferSliderItem from "./OfferSliderItem";
 
-export const SLIDER_WIDTH = Dimensions.get('window').width + 110;
+export const SLIDER_WIDTH = Dimensions.get('window').width + 140;
 export const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.7);
 
 interface IOfferSlider {
@@ -30,7 +30,7 @@ const OfferSlider: FC<IOfferSlider> = ({data}) => {
                 useScrollView={true}
                 onSnapToItem={(index) => setIndex(index)}
             />
-            <View style={{position: 'absolute', bottom: 10}}>
+            <View style={{position: 'absolute', bottom: Pixel(-40) , }}>
                 <Pagination
                     dotsLength={data.length}
                     activeDotIndex={index}
@@ -50,14 +50,16 @@ const OfferSlider: FC<IOfferSlider> = ({data}) => {
 
 const styles = StyleSheet.create({
     container: {
-        //backgroundColor: 'red',
+        //backgroundColor: Colors.dark,
         alignItems: 'center',
         justifyContent: 'center',
         overflow: 'hidden',
         marginTop: Pixel(40),
-        paddingBottom: Pixel(50),
+        //paddingBottom: Pixel(50),
         position: 'relative',
         marginBottom: Pixel(30),
+        //height:155,
+        borderRadius:15
     },
     dotStyle: {
         width: 7,

@@ -1,5 +1,13 @@
 import React, { FC, useState } from 'react';
-import { Dimensions, StyleSheet, View, Text, Image, ImageBackground } from 'react-native';
+import { 
+    Dimensions, 
+    StyleSheet, 
+    View, 
+    Text, 
+    Image, 
+    ImageBackground,
+    I18nManager
+ } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import { Colors, Images, Pixel, Fonts } from '../constants/styleConstants';
 import { commonStyles } from '../styles/styles';
@@ -9,14 +17,17 @@ import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { SolidDone } from '../../assets/Icons/Icons';
 import {useNavigation} from '@react-navigation/native';
-
+import {Logo} from '../../assets/Icons/Icons'
 const { width, height } = Dimensions.get('window');
+
 const Country: FC = () => {
+
     const { t } = useTranslation();
     const dispatch = useDispatch();
     const [chooseEgypt, setChooseEgypt] = useState(true)
     const [chooseBahrain, setChooseBahrain] = useState(false)
     const {navigate} = useNavigation();
+    const {isRTL} = I18nManager;
 
     return (
         <ImageBackground
@@ -33,10 +44,21 @@ const Country: FC = () => {
                     marginTop: Pixel(100),
 
                 }} >
-
-                    <Text style={styles.logoText} >Weyak</Text>
+                    {
+                        isRTL?
+                        <FastImage 
+                        source={Images.ArabicLogo} 
+                        style={{width:Pixel(350),height:Pixel(100)}} 
+                        resizeMode='contain'
+                        />
+                        :<FastImage 
+                        source={Images.logo} 
+                        style={{width:Pixel(350),height:Pixel(100)}} 
+                        resizeMode='contain'
+                        />
+                    }
                 </View>
-                <Text style={styles.countryText} >Choose Country</Text>
+                <Text style={styles.countryText} >{t('Choose Country')}</Text>
             </View>
             <View style={styles.langBtnsContainer}>
 
@@ -45,7 +67,7 @@ const Country: FC = () => {
                 <Touchable
                     onPress={() => {
                         setChooseEgypt(true),
-                            setChooseBahrain(false)
+                        setChooseBahrain(false)
                     }}
                 >
                     <View style={styles.button} >
@@ -60,8 +82,8 @@ const Country: FC = () => {
                             />
                             <Text style={{
                                 fontSize: 23,
-                                paddingLeft: Pixel(60)
-                            }} >Egypt</Text>
+                                paddingHorizontal: Pixel(30)
+                            }} >{t('Egypt')}</Text>
                         </View>
 
                         {
@@ -99,8 +121,8 @@ const Country: FC = () => {
                             />
                             <Text style={{
                                 fontSize: 23,
-                                paddingLeft: Pixel(60)
-                            }} >Bahrian</Text>
+                                paddingHorizontal: Pixel(30)
+                            }} >{t('Bahrian')}</Text>
                         </View>
 
 
@@ -114,7 +136,7 @@ const Country: FC = () => {
                 </Touchable>
 
                 <Button
-                    onPress={() =>navigate('Home') }
+                    onPress={() =>navigate('FooterHome') }
                     style={{
                         backgroundColor: Colors.minColor,
                         borderRadius: Pixel(50)
@@ -123,7 +145,7 @@ const Country: FC = () => {
                         fontSize: Pixel(40),
                         fontWeight: 'bold'
                     }}
-                    title={'Continue'} />
+                    title={t('Continue')} />
             </View>
         </ImageBackground>
     );

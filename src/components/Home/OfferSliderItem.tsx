@@ -1,7 +1,16 @@
 import React, {FC} from "react";
-import {Dimensions, ImageBackground, StyleSheet, Text, View} from "react-native";
+import {
+    Dimensions, 
+    ImageBackground, 
+    StyleSheet, 
+    Text, 
+    View,
+    I18nManager,
+} from "react-native";
 import {Colors, Fonts, Images, Pixel} from "../../constants/styleConstants";
 import Button from '../../components/touchables/Button'
+import { useTranslation } from 'react-i18next';
+
 export const SLIDER_WIDTH: number = Dimensions.get('window').width + 80;
 export const ITEM_WIDTH: number = Math.round(SLIDER_WIDTH * 0.7);
 
@@ -11,11 +20,17 @@ interface IOfferSliderItem {
 }
 
 const OfferSliderItem: FC<IOfferSliderItem> = ({item, index}) => {
+    //const { t } = useTranslation();
+    const {isRTL} = I18nManager;
+
     return (
         <View style={styles.offerItem} key={index}>
             <ImageBackground 
-            source={Images.offerSlider} 
-            style={[styles.image, {width: '100%', height: '100%'}]}
+            source={isRTL?Images.ArabicOffer: Images.offerSlider} 
+            style={[styles.image, {
+                width: '100%', 
+                height: '100%',
+            }]}
             resizeMode={'cover'}
             >
             <View style={styles.content} >

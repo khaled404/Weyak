@@ -18,16 +18,24 @@ import {commonStyles} from '../../styles/styles';
 import {ArrowLeftSmIcon} from '../../../assets/Icons/Icons';
 import IconTouchableContainer from '../touchables/IconTouchableContainer';
 import {useNavigation} from '@react-navigation/native';
+import {CartIcon,NotificationIcon} from '../../../assets/Icons/Icons'
 
 interface IHeader {
   title?: string;
   containerStyle?: StyleProp<ViewStyle>;
   titleStyle?: StyleProp<TextStyle>;
+  withIcon?:boolean;
 }
-const Header: FC<IHeader> = ({title, containerStyle, titleStyle}) => {
+const Header: FC<IHeader> = ({title, containerStyle, titleStyle,withIcon}) => {
   const {goBack} = useNavigation();
   return (
     <View style={[styles.conatiner, containerStyle]}>
+      <View>
+
+        {withIcon&&<IconTouchableContainer dark onPress={goBack} style={styles.icons}>
+          <ArrowLeftSmIcon width={20} style={commonStyles.rtlRotate} />
+        </IconTouchableContainer>}
+      </View>
       <View style={styles.right}>
         {!!title && (
           <View style={styles.titleConatiner}>
@@ -39,10 +47,15 @@ const Header: FC<IHeader> = ({title, containerStyle, titleStyle}) => {
             </Text>
           </View>
         )}
-        <IconTouchableContainer dark onPress={goBack} style={styles.icons}>
-          <ArrowLeftSmIcon width={20} style={commonStyles.rtlRotate} />
-        </IconTouchableContainer>
       </View>
+      <View style={styles.leftContainer}>
+          <IconTouchableContainer>
+            <CartIcon />
+          </IconTouchableContainer>
+          <IconTouchableContainer >
+            <NotificationIcon />
+          </IconTouchableContainer>
+        </View>
     </View>
   );
 };
@@ -51,16 +64,19 @@ export default Header;
 
 const styles = StyleSheet.create({
   conatiner: {
-    backgroundColor: Colors.minColor,
+    backgroundColor: Colors.sacandAppBackgroundColor,
     paddingTop: ScreenOptions.StatusBarHeight,
     height:
       Platform.OS === 'android'
         ? 56 + ScreenOptions.StatusBarHeight
         : 64 + ScreenOptions.StatusBarHeight,
     paddingHorizontal: 15,
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     ...commonStyles.rowBox,
     zIndex: 200,
+    flexDirection:'row',
+    alignItems:'center',
+    
   },
   left: {
     alignItems: 'flex-start',
@@ -70,7 +86,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   right: {
-    marginRight: 'auto',
+    //marginRight: 'auto',
     flexDirection: 'row-reverse',
     alignItems: 'center',
   },
@@ -84,6 +100,7 @@ const styles = StyleSheet.create({
     fontSize: Pixel(35),
     color: Colors.dark,
     fontFamily: Fonts.bold,
+    fontWeight:'bold',
     marginLeft: 5,
     marginRight: 'auto',
   },
@@ -93,5 +110,9 @@ const styles = StyleSheet.create({
     height: Pixel(55),
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  leftContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
 });

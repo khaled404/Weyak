@@ -6,10 +6,18 @@ import {
   Home,
   Country,
   Language,
+  RX,
+  PrescriptionWithoutInsurance,
+  PrescriptionAdd,
+  RequestInProgress,
+  FooterHome
 } from '../screens/index';
 import Animated from 'react-native-reanimated';
 import DrawerContent from '../components/drawer/DrawerContent';
 import { I18nManager, StyleSheet } from 'react-native';
+import {RootState} from '../store/store';
+import {shallowEqual, useSelector} from 'react-redux';
+
 const { isRTL } = I18nManager;
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -86,14 +94,23 @@ const navigationSlideToTop = {
 };
 
 const Stacks: FC<any> = ({ style }) => {
+  const {language} = useSelector((state: RootState) => state.settings);
+  console.log(language)
   return (
     <Animated.View style={[styles.stacksStyles, style]}>
       <Stack.Navigator
-        screenOptions={{ headerShown: false, ...navigationTransition } as any}
-        initialRouteName={'Language'}>
+        screenOptions={{headerShown: false, ...navigationTransition} as any}
+        initialRouteName={
+          language !== null ? 'Language' : 'Country' 
+        }>
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Language" component={Language} />
         <Stack.Screen name="Country" component={Country} />
+        <Stack.Screen name="RX" component={RX} />
+        <Stack.Screen name="PrescriptionWithoutInsurance" component={PrescriptionWithoutInsurance} />
+        <Stack.Screen name="PrescriptionAdd" component={PrescriptionAdd} />
+        <Stack.Screen name="RequestInProgress" component={RequestInProgress} />
+        <Stack.Screen name="FooterHome" component={FooterHome} />
       </Stack.Navigator>
     </Animated.View>
   );
