@@ -33,9 +33,9 @@ const CheckOut: FC = () => {
                     <Pin/>
                     </TouchableOpacity>
                     <View style={styles.addressMid} >
-                    <Text style={styles.addressText} >Ahmed Mohamed( Miami)</Text>
-                    <Text style={styles.addressText} >st.12 - Building 20</Text>
-                    <Text style={styles.addressText} >Mobile Number 01212312345</Text>
+                    <Text style={styles.addressText} >{t('Ahmed Mohamed')} ( {t('Miami')} )</Text>
+                    <Text style={styles.addressText} >{t('st.12 - Building 20')}</Text>
+                    <Text style={styles.addressText} >{t('Mobile Number')} 01212312345</Text>
                     </View>
                     <TouchableOpacity style={styles.edit} >
 
@@ -45,16 +45,16 @@ const CheckOut: FC = () => {
                 <View style={styles.headerContainer} >
                     <Text style={[styles.header,{
                         color:Colors.minColor
-                    }]} >Pay With</Text>
+                    }]} >{t('Pay With')}</Text>
                 </View>
                 <View style={styles.payContainer} >
                     <View style={styles.payOption} >
-                        <Text>Cash By Deliver</Text>
+                        <Text>{t('Cash By Deliver')}</Text>
                         <CheckedIcon/>
                     </View>
 
                     <View style={styles.payOption} >
-                        <Text>Online Payment</Text>
+                        <Text>{t('Online Payment')}</Text>
                         <UnCheckedIcon/>
                     </View>
                 </View>     
@@ -62,7 +62,7 @@ const CheckOut: FC = () => {
                 <View style={styles.headerContainer} >
                     <Text style={[styles.header,{
                         color:Colors.minColor
-                    }]} >Payment Summery</Text>
+                    }]} >{t('Payment Summery')}</Text>
                 </View>
                 <OrderDetailsCard/>
 
@@ -89,6 +89,7 @@ export default CheckOut;
 const styles = StyleSheet.create({
     container: {
         backgroundColor: Colors.sacandAppBackgroundColor,
+        marginBottom:80
     },
     headerContainer:{
         width:'100%',

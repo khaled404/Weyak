@@ -39,7 +39,10 @@ const ProductCard: FC<IProductCard> = ({image,out,replace}) => {
                             }
                         </ImageBackground>
                     <View style={styles.right} >
-                        <Text style={styles.name} >{t('Product Name Here')}</Text>
+
+                        <Text style={[styles.name,{
+                            textAlign:'left'
+                        }]} >{t('Product Name Here')}</Text>
                         <View style={styles.row} >
                             <Text style={[styles.text,{
                                 width:'13%'
@@ -51,7 +54,8 @@ const ProductCard: FC<IProductCard> = ({image,out,replace}) => {
                             }} >
                             <Text>: </Text>
                             <Text style={[styles.text,{
-                                color:Colors.minColor
+                                color:Colors.minColor,
+                                paddingHorizontal:5
                             }]} >{t('150 EG')}</Text>
                             </View>
                         </View>
@@ -68,7 +72,8 @@ const ProductCard: FC<IProductCard> = ({image,out,replace}) => {
 
                             <Text>: </Text>
                             <Text style={[styles.text,{
-                                color:Colors.minColor
+                                color:Colors.minColor,
+                                paddingHorizontal:5
                             }]} >1 {t('Tab')}</Text>
                             </View>
                         </View>
@@ -86,7 +91,7 @@ const ProductCard: FC<IProductCard> = ({image,out,replace}) => {
                         fontSize:12,
                         fontWeight:'bold',
                         color:Colors.minColor
-                    }} >{t(' 2 Times Per Day - 1 Week')}</Text>
+                    }} >{t('2 Times Per Day - 1 Week')}</Text>
                 </View>
                 {replace&&<View style={styles.iconsContainer} >
                     <TouchableOpacity style={styles.icon} >

@@ -108,7 +108,7 @@ const Stacks: FC<any> = ({style}) => {
     <Animated.View style={[styles.stacksStyles, style]}>
       <Stack.Navigator
         screenOptions={{headerShown: false, ...navigationTransition} as any}
-        initialRouteName={language === null ? 'Language' : 'Country'}>
+        initialRouteName={language === null ? 'Language' : 'CheckOut'}>
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Language" component={Language} />
         <Stack.Screen name="Country" component={Country} />

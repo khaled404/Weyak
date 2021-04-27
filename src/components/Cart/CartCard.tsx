@@ -38,7 +38,8 @@ const CartCard: FC<IProductCard> = ({image}) => {
                             }} >
                             <Text>: </Text>
                             <Text style={[styles.text,{
-                                color:Colors.minColor
+                                color:Colors.minColor,
+                                paddingHorizontal:5
                             }]} >{t('150 EG')}</Text>
                             </View>
                         </View>
@@ -58,7 +59,8 @@ const CartCard: FC<IProductCard> = ({image}) => {
                                 flexDirection:'row',
                                 alignItems:'center',
                                 justifyContent:'space-between',
-                                width:50
+                                width:70,
+                                paddingHorizontal:5
                             }} >
                                 <TouchableOpacity
                                     onPress={() => setQuantity(quantity-1)}
@@ -93,7 +95,8 @@ const CartCard: FC<IProductCard> = ({image}) => {
 
                             <Text>: </Text>
                             <Text style={[styles.text,{
-                                color:Colors.minColor
+                                color:Colors.minColor,
+                                paddingHorizontal:5
                             }]} > 50 {t('EG')}</Text>
                             </View>
                         </View>
