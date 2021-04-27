@@ -52,6 +52,13 @@ export enum Images {
     ArabicMedical = require('../../assets/images/arabicGettyimage.png'),
     ArabicOffer = require('../../assets/images/arabicOffer.png'),
     ezaby = require('../../assets/images/ezaby.png'),
+    Product1 = require('../../assets/images/product1.png'),
+    Product2 = require('../../assets/images/product2.png'),
+    Product3 = require('../../assets/images/product3.png'),
+    Price = require('../../assets/images/price.png'),
+    over = require('../../assets/images/over.png'),
+    Product4 = require('../../assets/images/product4.png'),
+    Product5 = require('../../assets/images/product5.png'),
 
 }
 

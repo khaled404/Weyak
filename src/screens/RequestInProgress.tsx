@@ -107,7 +107,6 @@ const RequestInProgress: FC = () => {
                 />
             </View>
         </Container>
-        <Footer/>
         </>
     );
 
