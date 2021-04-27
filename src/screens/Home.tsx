@@ -46,7 +46,6 @@ const Home: FC = () => {
                 <PrescriptionUpload/>
             </Content>
         </Container>
-        <Footer/>
         </>
     );
 

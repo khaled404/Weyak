@@ -71,7 +71,6 @@ const PrescriptionAdd: FC = () => {
                 />
             </View>
         </Container>
-        <Footer/>
         </>
     );
 

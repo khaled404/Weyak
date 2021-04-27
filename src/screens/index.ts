@@ -9,4 +9,6 @@ export const PrescriptionWithoutInsurance = register({ loader: () =>
 export const PrescriptionAdd = register({ loader: () => 
         import('./PrescriptionAdd') });
 export const RequestInProgress = register({ loader: () => import('./RequestInProgress') });
-export const FooterHome = register({ loader: () => import('./FooterHome') });
+export const PrescriptionDetails = register({ loader: () => import('./PrescriptionDetails') });
+export const Cart = register({ loader: () => import('./Cart') });
+export const CheckOut = register({ loader: () => import('./CheckOut') });

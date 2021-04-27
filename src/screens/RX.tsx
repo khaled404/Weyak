@@ -57,7 +57,6 @@ const RX: FC = () => {
             </View>
             </Content>
         </Container>
-        <Footer/>
         </>
     );
 

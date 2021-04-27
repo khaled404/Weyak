@@ -136,7 +136,7 @@ const Country: FC = () => {
                 </Touchable>
 
                 <Button
-                    onPress={() =>navigate('FooterHome') }
+                    onPress={() =>navigate('Home') }
                     style={{
                         backgroundColor: Colors.minColor,
                         borderRadius: Pixel(50)

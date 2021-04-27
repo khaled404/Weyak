@@ -13,7 +13,7 @@ import LottieView from 'lottie-react-native';
 import {TouchableProps} from '../../constants/interfaces';
 import {Colors, Fonts, Pixel} from '../../constants/styleConstants';
 interface Props extends TouchableProps {
-  title: string;
+  title?: string;
   style?: StyleProp<ViewStyle>;
   styleTitle?: StyleProp<TextStyle>;
   loader?: boolean;

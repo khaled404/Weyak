@@ -33,7 +33,6 @@ const PrescriptionWithoutInsurance: FC = () => {
             </View>
             </Content>
         </Container>
-        <Footer/>
         </>
     );
 
