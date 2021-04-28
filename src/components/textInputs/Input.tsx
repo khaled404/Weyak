@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
     iconRight: {
         position: 'absolute',
         // paddingRight: 10,
-        top: 5,
+        top: 10,
         right: 10,
         alignSelf: 'center'
     },

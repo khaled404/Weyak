@@ -87,5 +87,29 @@ export default {
   "Cash By Deliver":"نقدي عند التسليم",
   "Online Payment":"الدفع اونلاين",
   "Payment Summery":"ملخص الدفع",
-  "Place Order":"تنفيذ الطلب"
+  "Place Order":"تنفيذ الطلب",
+  "Order Confirmation":"تأكيد الطلب",
+  "Congratulations":"تهانينا",
+  "Your Order Has Been Submitted":"لقد تم تأجيل طلبك",
+  "Register":"انشاء حساب",
+  "First Name":"الأسم الأول",
+  "Last Name":"الأسم الأخير",
+  "Email Address":"البريد الالكتروني",
+  "Password":"كلمة المرور",
+  "OR":"أو",
+  "Register With Google":"التسجيل بحساب جوجل",
+  "Register With Facebook":"التسجيل بحساب فيسبوك",
+  "Already Registered?":"لدي حساب بالفعل!",
+  "Log In":"دخول",
+  "Enter Your Phone Number And We Will Send You a Verification Code":
+  "قم بأدخال رقم تليفونك المحمول و سوف نرسل اليك رمز تحقيق",
+  "Phone Number":"رقم التليفون",
+  "Confirm":"تأكيد",
+  "Enter the 4-digit code sent your phone number":
+  "قم بأدخال ال4 ارقام التي تم ارسالها علي رقم تليفونك",
+  "Didn\'t receive the code?":"لم يتم ارسال الرمز؟",
+  "Resend":"اعادة ارسال",
+  "Don\'t Have an Account?":"ليس لدي حساب !",
+  "Sign In":"تسجيل الدخول",
+  "Forget Password?":"هل نسيت كلمة المرور ؟"
 };
