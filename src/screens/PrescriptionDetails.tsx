@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import {StyleSheet, View,Text, FlatList,Image} from 'react-native';
+import {StyleSheet, View,Text, FlatList,Image,I18nManager} from 'react-native';
 import {Container, Content} from '../components/containers/Containers';
 import Header from '../components/header/Header';
 import {Colors,Fonts,Images,Pixel} from "../constants/styleConstants";
@@ -17,6 +17,8 @@ import Button from '../components/touchables/Button'
 const PrescriptionDetails: FC = () => {
     const {t} = useTranslation();
     const {navigate} = useNavigation();
+    const { isRTL } = I18nManager;
+
     const data = [
         {   
             id:1,
@@ -40,7 +42,7 @@ const PrescriptionDetails: FC = () => {
             <Header withIcon title={t("Prescription Details")}/>
             <Content >
             
-            <MedicineCard subTitle={t('your prescription is tow steps from your home, proceed the order or add new product ')} /> 
+            <MedicineCard subTitle={t('your prescription is tow steps from your home, proceed the order or add new product')} /> 
             
             <View style={styles.mid} >
                 <View style={styles.left} >
@@ -56,14 +58,14 @@ const PrescriptionDetails: FC = () => {
                         paddingLeft:10,
                     }} >
                         <View style={styles.row} >
-                            <Text style={styles.text} >Alexandria - </Text>
+                            <Text style={styles.text} >{t('Alexandria')} - </Text>
                             <Text style={[styles.text,{
                                 color:Colors.minColor
-                            }]} >Miami</Text>
+                            }]} >{t('Miami')}</Text>
                         </View>
 
                         <View style={styles.row} >
-                            <Text style={styles.text} >DR : </Text>
+                            <Text style={styles.text} >{t('DR')} : </Text>
                             <Text style={[styles.text,{
                                 color:Colors.minColor
                             }]} >Ahmed Mohamed</Text>
@@ -105,7 +107,7 @@ const PrescriptionDetails: FC = () => {
                     justifyContent:'space-evenly',
                     borderRadius:30
                 }} >
-                    <Text style={styles.buttonText} >Add To Wishlist</Text>
+                    <Text style={styles.buttonText} >{t('Add To Wishlist')}</Text>
                     <Wishlist/>
                 </Button>
 
@@ -115,9 +117,9 @@ const PrescriptionDetails: FC = () => {
                     flexDirection:'row',
                     alignItems:'center',
                     justifyContent:'space-evenly',
-                    borderRadius:30
+                    borderRadius:60,
                 }} >
-                    <Text style={styles.buttonText} >Add To Cart</Text>
+                    <Text style={styles.buttonText} >{t('Add To Cart')}</Text>
                     <CartIcon1/>
                 </Button>
               </View>
@@ -135,6 +137,7 @@ export default PrescriptionDetails;
 const styles = StyleSheet.create({
     container: {
         backgroundColor: Colors.sacandAppBackgroundColor,
+        marginBottom:90
     },  
     image: {
         //flex: 1,
@@ -200,6 +203,6 @@ const styles = StyleSheet.create({
         fontSize:13,
         fontWeight:'bold',
         color:Colors.white,
-        paddingRight:10
+        paddingHorizontal:10
     }
 });
