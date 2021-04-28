@@ -1,8 +1,13 @@
 import React, {FC, useEffect, useState} from 'react';
 import {StyleSheet, TextInput, View, Keyboard} from 'react-native';
-import {Fonts} from '../../constants/styleConstants';
+import {Fonts , Colors,Pixel} from '../../constants/styleConstants';
 
-const CodeInput: FC = () => {
+
+interface ICodeInput {
+  onChangeText?: (text: string) => void;
+  arrayWidth?: number;
+}
+const CodeInput: FC<ICodeInput> = ({onChangeText, arrayWidth}) => {
   const [state, setstate] = useState<any>({
     inputRefs: {} as any,
     inputValues: {} as any,
@@ -18,6 +23,8 @@ const CodeInput: FC = () => {
         .join(''),
     }));
   };
+  
+
   useEffect(() => {
     GetInputValues();
   }, [state.inputValues]);
@@ -28,8 +35,10 @@ const CodeInput: FC = () => {
   }, []);
   return (
     <View style={styles.container}>
-      {[...Array(6).keys()].map(index => (
-        <View style={styles.textInpuContainer} key={index}>
+      {[...Array(arrayWidth).keys()].map(index => (
+        <View style={[styles.textInpuContainer,{
+          borderColor:!index?Colors.minColor:Colors.dark
+        }]} key={index}>
           <TextInput
             style={styles.textInput}
             keyboardType="numeric"
@@ -65,7 +74,7 @@ const CodeInput: FC = () => {
                 state.inputRefs[`input_${index - 1}`].focus();
               }
             }}
-            onFocus={props => {}}
+            //onFocus={()}
           />
         </View>
       ))}
@@ -79,21 +88,27 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-evenly',
+    width:'100%'
   },
   textInpuContainer: {
-    width: 50,
-    height: 50,
+    width: '19%',
+    height: Pixel(160),
     paddingHorizontal: 5,
+    borderWidth:3,
+    borderRadius: 15,
+    alignItems:'center',
+    justifyContent:'center'
   },
   textInput: {
-    borderRadius: 10,
-    backgroundColor: '#F0F0F0',
-    width: '100%',
-    height: '100%',
-    fontSize: 20,
-    fontFamily: Fonts.light,
+    width: '70%',
+    height: '75%',
+    fontSize: 30,
+    fontFamily: Fonts.bold,
+    fontWeight:'bold',
     textAlign: 'center',
     textAlignVertical: 'center',
+    borderBottomWidth:2,
+    
   },
 });

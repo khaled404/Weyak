@@ -13,6 +13,11 @@ import {
   PrescriptionDetails,
   Cart,
   CheckOut,
+  OrderConfirmation,
+  Register,
+  PhoneCode,
+  ConfirmPhoneCode,
+  Login,
 } from '../screens/index';
 import FooterTabs from './FooterTabs';
 import Animated from 'react-native-reanimated';
@@ -105,13 +110,38 @@ const Stacks: FC<any> = ({style}) => {
   const {language} = useSelector((state: RootState) => state.settings);
   console.log(language);
   return (
-    <Animated.View style={[styles.stacksStyles, style]}>
       <Stack.Navigator
-        screenOptions={{headerShown: false, ...navigationTransition} as any}
-        initialRouteName={language === null ? 'Language' : 'CheckOut'}>
+      screenOptions={{headerShown: false, ...navigationTransition} as any}
+        >
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Language" component={Language} />
+        <Stack.Screen name="Cart" component={Cart} />
+        <Stack.Screen name="CheckOut" component={CheckOut} />
+        <Stack.Screen name="OrderConfirmation" component={OrderConfirmation} />
+        <Stack.Screen name="Register" component={Register} />
+      </Stack.Navigator>
+  );
+};
+
+const AuthStack: FC<any> = ({style}) => {
+  const {language} = useSelector((state: RootState) => state.settings);
+  console.log(language);
+  return (
+      <Stack.Navigator>
+        <Stack.Screen name="Language" component={Language} />
         <Stack.Screen name="Country" component={Country} />
+        <Stack.Screen name="Register" component={Register} />
+      </Stack.Navigator>
+  );
+};
+
+const RXStack: FC<any> = () => {
+  const {language} = useSelector((state: RootState) => state.settings);
+  console.log(language);
+  return (
+      <Stack.Navigator
+      screenOptions={{headerShown: false, ...navigationTransition} as any}
+      >
         <Stack.Screen name="RX" component={RX} />
         <Stack.Screen
           name="PrescriptionWithoutInsurance"
@@ -123,122 +153,60 @@ const Stacks: FC<any> = ({style}) => {
           name="PrescriptionDetails"
           component={PrescriptionDetails}
         />
-        <Stack.Screen name="Cart" component={Cart} />
-        <Stack.Screen name="CheckOut" component={CheckOut} />
       </Stack.Navigator>
-    </Animated.View>
-  );
-};
-
-const TabsStack: FC = () => {
-  const {t} = useTranslation();
-
-  return (
-    <Tab.Navigator 
-      tabBarOptions={{
-        showLabel:false,
-        style:{
-        position:'absolute',
-        bottom:0,
-        height:84,
-        width:'100%',
-        backgroundColor:Colors.white,
-        elevation: 10,
-        shadowColor: '#000',
-        shadowOffset: {width: 0, height: 1},
-        shadowOpacity: 0.3,
-        shadowRadius: 1,
-        }
-      }}
-    >
-      <Tab.Screen name="Home" component={Stacks} options={{
-        tabBarIcon:({focused}) => (
-          <View 
-            style={styles.icon} >
-            {
-                focused?
-                <ActiveHome/>
-                :
-                <HomeIcon />
-            }
-            <Text style={[styles.text,{
-              color:focused?Colors.minColor:Colors.dark
-            }]} >{t('Home')}</Text>
-            </View>
-        )
-        
-      }} />
-      <Tab.Screen  name="RX" component={RX} options={{
-        tabBarIcon:({focused}) => (
-          <View 
-            style={[styles.mid,{
-                backgroundColor:focused?Colors.minColor:Colors.white
-            }]} >
-            {
-                focused?
-                <ActiveMenu/>
-                :
-                <Menu/>
-            }
-            <Text style={[{
-                fontWeight:'bold',
-                fontSize:9,
-                paddingTop:3
-            },{
-                color:focused?Colors.white:Colors.dark
-            }]} >RX</Text>
-            </View>
-        )
-        
-      }} />
-      <Tab.Screen
-        name="Profile"
-        component={Language}
-        options={{
-          tabBarIcon:({focused}) => (
-            <View style={styles.icon} >
-
-            <Profile/>
-            <Text style={styles.text} >{t('Profile')}</Text>
-            </View>
-          )
-          
-        }}
-      />
-    </Tab.Navigator>
   );
 };
 
 const initNavgtion: FC = () => {
   const {t} = useTranslation();
 
+  const {language} = useSelector((state: RootState) => state.settings);
   return (
     <NavigationContainer>
-      <Tab.Navigator 
-      tabBarOptions={{
-        showLabel:false,
-        style:{
-        position:'absolute',
-        bottom:0,
-        height:84,
-        width:'100%',
-        backgroundColor:Colors.white,
-        elevation: 10,
-        shadowColor: '#000',
-        shadowOffset: {width: 0, height: 1},
-        shadowOpacity: 0.3,
-        shadowRadius: 1,
-        }
-      }}
-    >
+      {
+        !language?
+        (
+      <Stack.Navigator
+      screenOptions={{headerShown: false, ...navigationTransition} as any}
+        initialRouteName={'Language'}
+      >
+        <Stack.Screen name="Language" component={Language} />
+        <Stack.Screen name="Country" component={Country} />
+        <Stack.Screen name="Register" component={Register} />
+        <Stack.Screen name="PhoneCode" component={PhoneCode} />
+        <Stack.Screen name="ConfirmPhoneCode" component={ConfirmPhoneCode} />
+        <Stack.Screen name="Login" component={Login} />
+      </Stack.Navigator>
+        )
+        :
+        (
+        <Tab.Navigator 
+        screenOptions={{headerShown: false, ...navigationTransition} as any}
+        initialRouteName={'Home'}
+        tabBarOptions={{
+          showLabel:false,
+          style:{
+            position:'absolute',
+            bottom:0,
+            height:84,
+            width:'100%',
+            backgroundColor:Colors.white,
+            elevation: 10,
+            shadowColor: '#000',
+            shadowOffset: {width: 0, height: 1},
+            shadowOpacity: 0.3,
+            shadowRadius: 1,
+          }
+        }}
+        >
       <Tab.Screen name="Home" component={Stacks} options={{
         tabBarIcon:({focused}) => (
           <View 
-            style={styles.icon} >
+          style={styles.icon} >
             {
-                focused?
-                <ActiveHome/>
-                :
+              focused?
+              <ActiveHome/>
+              :
                 <HomeIcon />
             }
             <Text style={[styles.text,{
@@ -248,24 +216,24 @@ const initNavgtion: FC = () => {
         )
         
       }} />
-      <Tab.Screen  name="RX" component={RX} options={{
+      <Tab.Screen  name="RX" component={RXStack} options={{
         tabBarIcon:({focused}) => (
           <View 
-            style={[styles.mid,{
-                backgroundColor:focused?Colors.minColor:Colors.white
-            }]} >
+          style={[styles.mid,{
+            backgroundColor:focused?Colors.minColor:Colors.white
+          }]} >
             {
-                focused?
-                <ActiveMenu/>
-                :
+              focused?
+              <ActiveMenu/>
+              :
                 <Menu/>
             }
             <Text style={[{
-                fontWeight:'bold',
-                fontSize:9,
-                paddingTop:3
+              fontWeight:'bold',
+              fontSize:9,
+              paddingTop:3
             },{
-                color:focused?Colors.white:Colors.dark
+              color:focused?Colors.white:Colors.dark
             }]} >RX</Text>
             </View>
         )
@@ -284,8 +252,10 @@ const initNavgtion: FC = () => {
           )
           
         }}
-      />
+        />
     </Tab.Navigator>
+        )
+}
     </NavigationContainer>
   );
 };

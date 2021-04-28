@@ -12,3 +12,8 @@ export const RequestInProgress = register({ loader: () => import('./RequestInPro
 export const PrescriptionDetails = register({ loader: () => import('./PrescriptionDetails') });
 export const Cart = register({ loader: () => import('./Cart') });
 export const CheckOut = register({ loader: () => import('./CheckOut') });
+export const OrderConfirmation = register({ loader: () => import('./OrderConfirmation') });
+export const Register = register({ loader: () => import('./Auth/Register') });
+export const PhoneCode = register({ loader: () => import('./Auth/PhoneCode') });
+export const ConfirmPhoneCode = register({ loader: () => import('./Auth/ConfirmPhoneCode') });
+export const Login = register({ loader: () => import('./Auth/Login') });

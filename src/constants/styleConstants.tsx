@@ -24,6 +24,7 @@ export enum Colors {
     snapchat = '#fffc00',
     instagram = '#405de6',
     whatsapp = '#128c7e',
+    AuthBorder='#CDCDCD'
 }
 
 export enum Fonts {
@@ -59,6 +60,7 @@ export enum Images {
     over = require('../../assets/images/over.png'),
     Product4 = require('../../assets/images/product4.png'),
     Product5 = require('../../assets/images/product5.png'),
+    AccountPic = require('../../assets/images/Account-pic.png'),
 
 }
 
